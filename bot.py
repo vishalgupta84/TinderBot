@@ -1,9 +1,12 @@
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
 
 # from secrets import username, password
 username = "gupta.vishalarya@gmail.com"
-password = ""
+password = "howyoudoin'"
 
 class TinderBot():
     def __init__(self):
@@ -11,10 +14,10 @@ class TinderBot():
 
     def login(self):
         self.driver.get('https://tinder.com')
-
-        sleep(2)
-
-        fb_btn = self.driver.find_element_by_xpath('//*[@id="modal-manager"]/div/div/div/div/div[3]/div[2]/button')
+        self.driver.maximize_window()
+        sleep(10)
+        # fb_btn = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.xpath, '//button[@title="LOG IN WITH FACEBOOK"]')))
+        fb_btn = self.driver.find_element_by_xpath("//div[@id='modal-manager']//div[2]//button[1]")
         fb_btn.click()
 
         # switch to login popup
@@ -30,16 +33,17 @@ class TinderBot():
         login_btn = self.driver.find_element_by_xpath('//*[@id="u_0_0"]')
         login_btn.click()
 
-        self.driver.switch_to_window(base_window)
-
-        popup_1 = self.driver.find_element_by_xpath('//*[@id="modal-manager"]/div/div/div/div/div[3]/button[1]')
+        self.driver.switch_to.window (base_window)
+        sleep(10)
+        popup_1 = self.driver.find_element_by_xpath("//span[@class='Pos(r) Z(1) Fz($xs)']")
         popup_1.click()
-
-        popup_2 = self.driver.find_element_by_xpath('//*[@id="modal-manager"]/div/div/div/div/div[3]/button[1]')
+        #
+        popup_2 = self.driver.find_element_by_xpath("//span[@class='Pos(r) Z(1) Fz($xs)']")
         popup_2.click()
 
     def like(self):
-        like_btn = self.driver.find_element_by_xpath('//*[@id="content"]/div/div[1]/div/main/div[1]/div/div/div[1]/div/div[2]/button[3]')
+        like_btn = self.driver.find_element_by_xpath("//*[name()='path' and contains(@d,'M21.994 10')]")
+        print("here ")
         like_btn.click()
 
     def dislike(self):
@@ -48,7 +52,7 @@ class TinderBot():
 
     def auto_swipe(self):
         while True:
-            sleep(0.5)
+            sleep(10)
             try:
                 self.like()
             except Exception:
