@@ -5,8 +5,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
 
 # from secrets import username, password
-username = "gupta.vishalarya@gmail.com"
-password = "howyoudoin'"
+username = ""
+password = "'"
 
 class TinderBot():
     def __init__(self):
